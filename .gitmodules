@@ -1,0 +1,3 @@
+[submodule "vendor/tabler_tabler-icons"]
+	path = vendor/tabler_tabler-icons
+	url = https://github.com/tabler/tabler-icons
