@@ -1,0 +1,98 @@
+ /* dark mode default */
+:root {
+    --fg-color: #eeeeee;
+    --fg2-color: #ffffff;
+    --bg-color: #222222;
+    --bg2-color: #333333;
+    --ac-color: #BDE4F4;
+    --ac2-color: #FFA86F;
+}
+
+/* light mode*/
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #eeeeee;
+        --bg2-color: #ffffff;
+        --fg-color: #222222;
+        --fg2-color: #333333;
+        --ac2-color: #BDE4F4;
+        --ac-color: #FFA86F;
+    }
+}
+
+/* https://fonts.google.com/specimen/Merriweather */
+@font-face {
+    font-family: "Merriweather";
+    src: url("asset/Merriweather-Regular.ttf") format(truetype);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border-width: 0;
+    font-family: "Merriweather", Georgia, serif;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--fg-color);
+    border-radius: 0px;
+}
+
+button, a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 5px 15px;
+    text-decoration: none;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover, a:hover * {
+    cursor: pointer;
+    background: var(--ac-color);
+    color: var(--bg2-color);
+}
+
+#header {
+    background: var(--bg2-color);
+    padding: 24px;
+    font-size: 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigate {
+    display: flex;
+    flex-direction: row;
+    font-size: 24px;
+}
+
+.navigate>* {
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.navigate>*+* {
+    margin-left: 5px;
+}
+
+.social_icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+#title>*+* {
+    margin-left: 10px;
+}
+
+#title:hover, #title:hover * {
+    background: var(--bg2-color);
+    color: var(--fg-color);
+}
