@@ -1,5 +1,10 @@
+//##===----------------------------------------------------------------------===##//
+//
+//  Author: Nathan Phipps 4/17/23
+//
+//##===----------------------------------------------------------------------===##//
 
-(function(){
+new function(){
     if (typeof String.prototype.endsWith !== "function") {
         String.prototype.endsWith = function(suffix) {
             return this.indexOf(suffix, this.length - suffix.length) === this.length - suffix.length;
@@ -11,7 +16,9 @@
             return this.indexOf(prefix) === 0;
         };
     }
-})();
+
+    //TODO: ensure string.contains, array.contains
+};
 
 var util = new function(){
 
@@ -170,16 +177,26 @@ var util = new function(){
     }
     
     function load(filename, callback){
+
+        callback = sanitizeCallback(callback);
+
+        var counter = 1;
+        function removeSelfCallback(callback){
+            function removeSelf(event){
+                if (event && event.target) {
+                    event.target.removeEventListener("load", removeSelf);
+                }
+                if (--counter === 0 && callback) callback();
+            }
+            return removeSelf;
+        }
+
         if (Array.isArray(filename)) {
-            callback = sanitizeCallback(callback);
             var jsFiles = filename.filter(isFilenameJs);
             var cssFiles = filename.filter(isFilenameCss);
             var others = filename.filter(isFilenameOther);
-            var counter = jsFiles.length + cssFiles.length;
-
-            function onloadCallback() {
-                if (--counter === 0) loadFile(others, callback);
-            }
+            counter = jsFiles.length + cssFiles.length;
+            var onloadCallback = removeSelfCallback(()=>{loadFile(others, callback);});
 
             if (counter > 0) {
                 loadJs(jsFiles, onloadCallback);
@@ -190,10 +207,10 @@ var util = new function(){
             }
         }
         else if (isFilenameJs(filename)) {
-            loadJs(filename, callback);
+            loadJs(filename, removeSelfCallback(callback));
         }
         else if (isFilenameCss(filename)) {
-            loadCss(filename, callback);
+            loadCss(filename, removeSelfCallback(callback));
         }
         else {
             loadFile(filename, callback);
@@ -223,12 +240,24 @@ var util = new function(){
         if (callback) callback();
     }
 
+    function dispatchOn(event_type, element){
+        var was_disabled = element.disabled || element.hasAttribute("disabled");
+        if (was_disabled) element.removeAttribute("disabled");
+
+        var event = document.creaetEvent("Event");
+        event.initEvent(event_type, true, true);
+        element.dispathEvent(event);
+
+        if (was_disabled) element.setAttribute("disabled", true);
+    }
+
     return {
         byId: byId,
         create: create,
         empty: empty,
         load: load,
         unload: unload,
+        dispatchOn: dispatchOn,
         sanitizeFilename: sanitizeFilename
     };
 };
