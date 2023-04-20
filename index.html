@@ -1,5 +1,33 @@
+<!DOCTYPE html>
 <html>
+	<head>
+		<title>Phipps Thicket</title>
+		<link rel="icon" href="asset/exclamation_square.svg"/>
+		<script src="js/utility.js"></script>
+		<link rel="stylesheet" href="css/index.css"/>
+	</head>
 	<body>
-		Phipps Thicket Coming Soon....
+		<div id="header">
+			<a id="title" href="/">
+				<span id="logo"></span>
+				<label>
+					Phipps Thicket
+				</label>
+			</a>
+			<span class="navigate">
+				<a id="github_link" class="social_icon" target="_blank" href="https://github.com/naphipps" ></a>
+				<a id="trello_link" class="social_icon" target="_blank" href="https://trello.com/b/YJhL1R6V" title="Current Project"></a>
+				<a id="twitter_link" class="social_icon" target="_blank" href="https://twitter.com/PhippsThicket"></a>
+				<a id="discord_link" class="social_icon" target="_blank"></a>
+				<a id="instagram_link" class="social_icon" target="_blank" href="https://www.instagram.com/phippsthicket/"></a>
+				<a href="/?page_title=About">
+					About
+				</a>
+			</span>
+		</div>
+		<div id="content"></div>
 	</body>
+	<script>
+		util.load(["js/index.js"]);
+	</script>
 </html>

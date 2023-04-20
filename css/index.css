@@ -23,7 +23,7 @@
 /* https://fonts.google.com/specimen/Merriweather */
 @font-face {
     font-family: "Merriweather";
-    src: url("asset/Merriweather-Regular.ttf") format(truetype);
+    src: url("../asset/Merriweather-Regular.ttf") format(truetype);
 }
 
 * {
@@ -68,9 +68,13 @@ a:hover, a:hover * {
     justify-content: space-between;
 }
 
-.navigate {
+#header>* {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigate {
     font-size: 24px;
 }
 
@@ -95,4 +99,9 @@ a:hover, a:hover * {
 #title:hover, #title:hover * {
     background: var(--bg2-color);
     color: var(--fg-color);
+}
+
+#logo svg {
+    width: 32px;
+    height: 32px;
 }

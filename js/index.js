@@ -22,9 +22,17 @@ var index = new function(){
 	}
 
 	function loadHomePage(){
-		util.load("html/home.html", function(files){
-			var file = files["html/home.html"];
-			if (file) util.byId("content").innerHTML = file;
+		injectPage(pages.get("Home"));
+	}
+
+	function injectPage(page){
+		page.files.push(page.filename)
+		util.load(page.files, (files)=>{
+			if (files) {
+				util.byId("content").innerHTML = files[page.filename];
+				page.init(files);
+				//TODO: setup way to call clear() on current page before navigating to next page?
+			}
 		});
 	}
 
@@ -32,22 +40,14 @@ var index = new function(){
 		pages.init();
 		var found = false;
 
-		if (_search_params.has(PAGE_TITLE)) {
+		if (false && _search_params.has(PAGE_TITLE)) { //enable after construction
 			var page_title = _search_params.get(PAGE_TITLE);
 			var page = pages.get(page_title);
 			
 			if (page) {
 				found = true;
-				page_title = page.title; //gets the correct capitalization
-				page.files.push(page.filename)
-				util.load(page.files, (files)=>{
-					if (files) {
-						console.log(files)
-						util.byId("content").innerHTML = files[page.filename];
-						page.init();
-						//TODO: setup way to call clear() on current page before navigating to next page?
-					}
-				});
+				//page_title = page.title; //gets the correct capitalization
+				injectPage(page);
 			}
 			else if (page_title !== "") {
 				//TODO: show message about not finding page -- maybe offer button to search for it
@@ -91,9 +91,9 @@ var index = new function(){
 	}
 
 	function loadLogo(){
-		util.load("asset/logo.svg", function(logos){
+		util.load("asset/exclamation_square.svg", function(logos){
 			if (logos) {
-				var logo = logos["asset/logo.svg"];
+				var logo = logos["asset/exclamation_square.svg"];
 				var element = util.byId("logo");
 				if (logo && element) element.innerHTML = logo;
 			}
