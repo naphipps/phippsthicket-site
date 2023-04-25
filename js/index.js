@@ -108,7 +108,7 @@ var index = new function(){
 		for (var i=0; i<_social_icons.length; i++)
 			icons.push(_social_icons[i].filename);
 
-			util.load(icons, digestIcons);
+		util.load(icons, digestIcons);
 	}
 
 	function loadPages(){
