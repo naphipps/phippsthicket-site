@@ -4,11 +4,11 @@
 //
 //##===----------------------------------------------------------------------===##//
 
-const VIDEO_GAME_TAG = "video game";
-const VULKAN_TAG = "Vulkan";
-const PROJECT_TAG = "project";
-const CPP_TAG = "C++";
-const C_TAG = "C";
+const TAG_VIDEO_GAME = "video game";
+const TAG_VULKAN = "Vulkan";
+const TAG_PROJECT = "project";
+const TAG_CPP = "C++";
+const TAG_C = "C";
 
 var pages = new function(){
 
@@ -33,7 +33,7 @@ var pages = new function(){
         "Project Blue Star": {
             filename: "html/project_blue_star.html",
             is_article: true,
-            tags: [VIDEO_GAME_TAG, VULKAN_TAG, PROJECT_TAG, CPP_TAG], 
+            tags: [TAG_VIDEO_GAME, TAG_VULKAN, TAG_PROJECT, TAG_CPP], 
             files: ["js/project_blue_star.js"],
             publish_date: "04-18-2023",
             init: ()=>{
