@@ -15,14 +15,18 @@ var pages = new function(){
     var _pages = {
         "Home": {
             filename: "html/home.html",
-            files: ["js/home.js"],
+            files: ["js/home.js", "css/home.css"],
             init: ()=>{
                 home.init();
             }
         },
         "About": {
             filename: "html/about.html",
-            is_article: true
+            files: ["js/about.js", "css/about.css"],
+            is_article: true,
+            init: ()=>{
+                about.init();
+            }
         },
         "Article" : {
             filename: "html/article.html"

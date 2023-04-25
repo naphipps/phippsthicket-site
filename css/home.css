@@ -1,0 +1,16 @@
+#home_motto {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+    font-size: 48px;
+    font-family: sans-serif;
+    font-weight: bold;
+    min-height: 200px;
+}
+
+#home_article_cards {
+    display: flex; 
+    align-items: center; 
+    flex-direction: column;
+}

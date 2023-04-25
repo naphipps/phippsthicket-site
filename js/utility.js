@@ -35,6 +35,10 @@ var util = new function(){
     function byId(id){
         return document.getElementById(id);
     }
+
+    function selectAll(selectors){
+        return document.querySelectorAll(selectors);
+    }
     
     function create(name){
         return document.createElement(name);
@@ -253,6 +257,7 @@ var util = new function(){
 
     return {
         byId: byId,
+        selectAll, selectAll,
         create: create,
         empty: empty,
         load: load,

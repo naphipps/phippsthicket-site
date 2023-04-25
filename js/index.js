@@ -10,11 +10,12 @@ var index = new function(){
 	var _search_params = new URLSearchParams(window.location.search);
 
 	const _social_icons = [
-		{filename: "asset/github_icon.svg", id: "github_link"},
-		{filename: "asset/twitter_icon.svg", id: "twitter_link"},
-		{filename: "asset/instagram_icon.svg", id: "instagram_link"},
-		{filename: "asset/discord_icon.svg", id: "discord_link"},
-		{filename: "asset/trello_icon.svg", id: "trello_link"}
+		{filename: "asset/github_icon.svg", class: "github_link"},
+		{filename: "asset/twitter_icon.svg", class: "twitter_link"},
+		{filename: "asset/instagram_icon.svg", class: "instagram_link"},
+		{filename: "asset/discord_icon.svg", class: "discord_link"},
+		{filename: "asset/trello_icon.svg", class: "trello_link"},
+		{filename: "asset/google_icon.svg", class: "google_link"}
 	];
 
 	function goHome(){
@@ -35,6 +36,7 @@ var index = new function(){
 				util.byId("article_header").innerText = page.title;
 				util.byId("article_content").innerHTML = files[page.filename];
 				page.init();
+				loadIcons();
 			}
 		});
 	}
@@ -51,6 +53,7 @@ var index = new function(){
 					if (file) {
 						util.byId("content").innerHTML = file;
 						page.init();
+						loadIcons();
 					}
 					else {
 						console.error("CANNOT LOAD EMPTY PAGE: " + page.filename);
@@ -97,8 +100,12 @@ var index = new function(){
 			for (var i=0; i<_social_icons.length; i++){
 				social = _social_icons[i];
 				icon = icons[social.filename];
-				element = util.byId(social.id);
-				if (icon && element) element.innerHTML = icon;
+
+				if (icon){
+					var elements = util.selectAll("." + social.class);
+					for (var j=0; j<elements.length; j++)
+						elements[j].innerHTML = icon;
+				}
 			}
 		}
 	}

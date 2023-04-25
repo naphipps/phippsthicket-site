@@ -1,0 +1,15 @@
+#about_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about_buttons button+button {
+    margin-left: 20px;
+}
+
+#about_buttons button svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

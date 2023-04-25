@@ -37,6 +37,15 @@ body {
     border-radius: 0px;
 }
 
+button {
+    background: var(--ac-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+button, button * {
+    font-family: sans-serif;
+}
+
 button, a {
     display: flex;
     align-items: center;
@@ -44,6 +53,14 @@ button, a {
     border-radius: 4px;
     padding: 5px 15px;
     text-decoration: none;
+}
+
+.indent {
+    text-indent: 20px;
+}
+
+button:hover, button:hover * {
+    cursor: pointer;
 }
 
 a {
@@ -56,8 +73,17 @@ a:hover, a:hover * {
     color: var(--bg2-color);
 }
 
-p {
-    text-indent: 20px;
+button:active, 
+a:active {
+    outline: 3px solid var(--ac-color);
+}
+
+button:active, 
+a:active,
+button:active *, 
+a:active * {
+    background: inherit;
+    color: var(--ac-color);
 }
 
 #header,
@@ -99,13 +125,17 @@ p {
     margin-left: 5px;
 }
 
-.social_icon svg {
+#navigate .social_icon svg {
     width: 24px;
     height: 24px;
 }
 
 #title {
     white-space: nowrap;
+}
+
+#title:active {
+    outline: none;
 }
 
 #title>*+* {
@@ -137,8 +167,6 @@ p {
     background: var(--bg2-color);
     max-width: 650px;
     max-height: 650px;
-    min-width: 200px;
-    min-height: 200px;
     box-shadow: 0 0 10px var(--shadow-color);
     border-radius: 20px;
     padding: 20px;
