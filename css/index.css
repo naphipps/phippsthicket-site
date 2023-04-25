@@ -126,11 +126,22 @@ p {
     margin: auto;
     background: var(--bg2-color);
     max-width: 650px;
-    position: relative;
     box-shadow: 0 0 10px var(--shadow-color);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 10px 20px 20px;
+}
+
+.article-card {
+    margin: 20px;
+    background: var(--bg2-color);
+    max-width: 650px;
+    max-height: 650px;
+    min-width: 200px;
+    min-height: 200px;
+    box-shadow: 0 0 10px var(--shadow-color);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 #article-header {

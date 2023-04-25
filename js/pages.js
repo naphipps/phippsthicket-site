@@ -14,7 +14,11 @@ var pages = new function(){
 
     var _pages = {
         "Home": {
-            filename: "html/home.html"
+            filename: "html/home.html",
+            files: ["js/home.js"],
+            init: ()=>{
+                home.init();
+            }
         },
         "About": {
             filename: "html/about.html",
@@ -25,11 +29,6 @@ var pages = new function(){
         },
         "Search": {
             filename: "html/search.html"
-        },
-        "My Blog Post Title": {
-            filename: "html/blog_post.html",
-            is_article: true,
-            publish_date: "04-17-2023"
         },
         "Project Blue Star": {
             filename: "html/project_blue_star.html",
