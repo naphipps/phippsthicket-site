@@ -127,6 +127,10 @@ a {
     color: inherit;
 }
 
+a:hover {
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
 a:hover, a:hover * {
     cursor: pointer;
     background: var(--ac-color);
@@ -195,6 +199,10 @@ a:active * {
 
 #title:active {
     outline: none;
+}
+
+#title:hover {
+    box-shadow: none;
 }
 
 #title>*+* {
