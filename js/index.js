@@ -32,8 +32,8 @@ var index = new function(){
 		util.load(page.files, (files)=>{
 			if (files) {
 				util.byId("content").innerHTML = files[article.filename];
-				util.byId("article-header").innerText = page.title;
-				util.byId("article-content").innerHTML = files[page.filename];
+				util.byId("article_header").innerText = page.title;
+				util.byId("article_content").innerHTML = files[page.filename];
 				page.init();
 			}
 		});

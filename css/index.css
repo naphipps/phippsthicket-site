@@ -122,7 +122,7 @@ p {
     height: 32px;
 }
 
-#article-page {
+#article_page {
     margin: auto;
     background: var(--bg2-color);
     max-width: 650px;
@@ -132,7 +132,7 @@ p {
     padding: 10px 20px 20px;
 }
 
-.article-card {
+.article_card {
     margin: 20px;
     background: var(--bg2-color);
     max-width: 650px;
@@ -144,18 +144,18 @@ p {
     padding: 20px;
 }
 
-#article-header {
+#article_header {
     font-family: sans-serif;
     font-size: 24px;
     padding: 10px;
     border-bottom: solid 1px var(--fg-color);
 }
 
-#article-content {
+#article_content {
     margin: 20px 0;
 }
 
-#article-content>p+p {
+#article_content>p+p {
     margin-top: 20px;
 }
 
@@ -166,7 +166,7 @@ p {
     margin: auto;
 }
 
-.color-palette {
+.color_palette {
     background: linear-gradient(
         90deg,
         var(--fg2-color) 16.67%,
@@ -183,7 +183,7 @@ p {
 }
 
 @media (prefers-color-scheme: light) {
-    .color-palette {
+    .color_palette {
         background: linear-gradient(
             90deg,
             var(--bg2-color) 16.67%,
