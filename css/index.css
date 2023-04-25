@@ -1,4 +1,52 @@
- /* dark mode default */
+/* https://fonts.google.com/specimen/Source+Sans+Pro */
+@font-face {
+    font-family: "Sans-Serif";
+    src: url("../asset/SourceSansPro-Regular.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "Sans-Serif Thin";
+    src: url("../asset/SourceSansPro-Light.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "Sans-Serif Bold";
+    src: url("../asset/SourceSansPro-Bold.ttf") format(truetype);
+}
+
+/* https://fonts.google.com/specimen/Source+Serif+Pro */
+@font-face {
+    font-family: "Serif";
+    src: url("../asset/SourceSerifPro-Regular.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "Serif Thin";
+    src: url("../asset/SourceSerifPro-Light.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "Serif Bold";
+    src: url("../asset/SourceSerifPro-Bold.ttf") format(truetype);
+}
+
+/* https://fonts.google.com/specimen/Source+Code+Pro */
+@font-face {
+    font-family: "Code";
+    src: url("../asset/SourceCodePro-Regular.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "Code Thin";
+    src: url("../asset/SourceCodePro-Light.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "Code Bold";
+    src: url("../asset/SourceCodePro-Bold.ttf") format(truetype);
+}
+
+/* dark mode default */
 :root {
     --fg-color: #dddddd;
     --fg2-color: #ffffff;
@@ -7,6 +55,15 @@
     --ac-color: #BDE4F4;
     --ac2-color: #FFA86F;
     --shadow-color: rgba(0, 0, 0, 0.5);
+    --font-sans: "Sans-Serif";
+    --font-sans-thin: "Sans-Serif Thin";
+    --font-sans-bold: "Sans-Serif Bold";
+    --font-serif: "Serif";
+    --font-serif-thin: "Serif Thin";
+    --font-serif-bold: "Serif Bold";
+    --font-code: "Code";
+    --font-code-thin: "Code Thin";
+    --font-code-bold: "Code Bold";
 }
 
 /* light mode*/
@@ -26,9 +83,12 @@
     margin: 0;
     border-width: 0;
     font-style: normal;
-    font-family: serif;
+    font-family: var(--font-serif);
     font-size: 16px;
-    font-weight: 200;
+}
+
+code {
+    font-family: var(--font-code);
 }
 
 body {
@@ -43,7 +103,7 @@ button {
 }
 
 button, button * {
-    font-family: sans-serif;
+    font-family: var(--font-sans);
 }
 
 button, a {
@@ -88,8 +148,8 @@ a:active * {
 
 #header,
 #header * {
-    font-family: sans-serif;
-    font-size: 32px;
+    font-family: var(--font-sans);
+    font-size: 48px;
 }
 
 #header {
@@ -113,7 +173,6 @@ a:active * {
 #navigate,
 #navigate * {
     font-size: 16px;
-    font-weight: bold;
 }
 
 #navigate>* {
@@ -173,7 +232,7 @@ a:active * {
 }
 
 #article_header {
-    font-family: sans-serif;
+    font-family: var(--font-sans-thin);
     font-size: 24px;
     padding: 10px;
     border-bottom: solid 1px var(--fg-color);

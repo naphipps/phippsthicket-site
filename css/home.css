@@ -4,8 +4,7 @@
     justify-content: center; 
     width: 100%;
     font-size: 48px;
-    font-family: sans-serif;
-    font-weight: bold;
+    font-family: var(--font-sans-bold);
     min-height: 200px;
 }
 
