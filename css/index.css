@@ -100,6 +100,7 @@ body {
 button {
     background: var(--ac-color);
     box-shadow: 0 0 10px var(--shadow-color);
+    white-space: nowrap;
 }
 
 button, button * {
@@ -188,9 +189,24 @@ a:active * {
     margin-left: 5px;
 }
 
-#navigate .social_icon svg {
+.social_icon svg {
     width: 24px;
     height: 24px;
+}
+
+.social_icon {
+    min-width: 24px;
+    min-height: 24px;
+}
+
+button .social_icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+button .social_icon {
+    min-width: 16px;
+    min-height: 16px;
 }
 
 #title {

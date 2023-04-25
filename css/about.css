@@ -1,14 +1,15 @@
-#about_buttons {
+#about_footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
-#about_buttons button+button {
-    margin-left: 20px;
+#about_footer>* {
+    margin: 0 5px
 }
 
-#about_buttons button svg {
+#about_footer button svg {
     display: flex;
     align-items: center;
     justify-content: center;
