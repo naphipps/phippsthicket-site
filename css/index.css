@@ -1,17 +1,18 @@
  /* dark mode default */
 :root {
-    --fg-color: #eeeeee;
+    --fg-color: #dddddd;
     --fg2-color: #ffffff;
     --bg-color: #222222;
     --bg2-color: #333333;
     --ac-color: #BDE4F4;
     --ac2-color: #FFA86F;
+    --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
 /* light mode*/
 @media (prefers-color-scheme: light) {
     :root {
-        --bg-color: #eeeeee;
+        --bg-color: #dddddd;
         --bg2-color: #ffffff;
         --fg-color: #222222;
         --fg2-color: #333333;
@@ -20,17 +21,14 @@
     }
 }
 
-/* https://fonts.google.com/specimen/Merriweather */
-@font-face {
-    font-family: "Merriweather";
-    src: url("../asset/Merriweather-Regular.ttf") format(truetype);
-}
-
 * {
     padding: 0;
     margin: 0;
     border-width: 0;
-    font-family: "Merriweather", Georgia, serif;
+    font-style: normal;
+    font-family: serif;
+    font-size: 16px;
+    font-weight: 200;
 }
 
 body {
@@ -58,14 +56,26 @@ a:hover, a:hover * {
     color: var(--bg2-color);
 }
 
+p {
+    text-indent: 20px;
+}
+
+#header,
+#header * {
+    font-family: sans-serif;
+    font-size: 32px;
+}
+
 #header {
     background: var(--bg2-color);
-    padding: 24px;
-    font-size: 36px;
+    padding: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    box-shadow: 0 0 10px var(--shadow-color);
+    z-index: 9999;
 }
 
 #header>* {
@@ -74,22 +84,28 @@ a:hover, a:hover * {
     justify-content: center;
 }
 
-.navigate {
-    font-size: 24px;
+#navigate,
+#navigate * {
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.navigate>* {
+#navigate>* {
     min-width: 32px;
     min-height: 32px;
 }
 
-.navigate>*+* {
+#navigate>*+* {
     margin-left: 5px;
 }
 
 .social_icon svg {
     width: 24px;
     height: 24px;
+}
+
+#title {
+    white-space: nowrap;
 }
 
 #title>*+* {
@@ -104,4 +120,37 @@ a:hover, a:hover * {
 #logo svg {
     width: 32px;
     height: 32px;
+}
+
+#article-page {
+    margin: auto;
+    background: var(--bg2-color);
+    max-width: 650px;
+    position: relative;
+    box-shadow: 0 0 10px var(--shadow-color);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10px 20px 20px;
+}
+
+#article-header {
+    font-family: sans-serif;
+    font-size: 24px;
+    padding: 10px;
+    border-bottom: solid 1px var(--fg-color);
+}
+
+#article-content {
+    margin: 20px 0;
+}
+
+#article-content>p+p {
+    margin-top: 20px;
+}
+
+.quote {
+    font-style: italic;
+    text-align: center;
+    padding: 0 20px;
+    margin: auto;
 }

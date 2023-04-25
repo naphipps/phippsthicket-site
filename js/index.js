@@ -25,22 +25,47 @@ var index = new function(){
 		injectPage(pages.get("Home"));
 	}
 
-	function injectPage(page){
+	function injectArticle(page) {
+		var article = pages.get("article");
+		page.files.push(article.filename);
 		page.files.push(page.filename)
 		util.load(page.files, (files)=>{
 			if (files) {
-				util.byId("content").innerHTML = files[page.filename];
-				page.init(files);
-				//TODO: setup way to call clear() on current page before navigating to next page?
+				util.byId("content").innerHTML = files[article.filename];
+				util.byId("article-header").innerText = page.title;
+				util.byId("article-content").innerHTML = files[page.filename];
+				page.init();
 			}
 		});
+	}
+
+	function injectPage(page){
+		if (page.is_article) {
+			injectArticle(page);
+		}
+		else {
+			page.files.push(page.filename)
+			util.load(page.files, (files)=>{
+				if (files) {
+					var file = files[page.filename];
+					if (file) {
+						util.byId("content").innerHTML = file;
+						page.init();
+					}
+					else {
+						console.error("LOADING EMPTY PAGE: " + page.filename);
+						loadHomePage();
+					}
+				}
+			});
+		}
 	}
 
 	function digestPages(){
 		pages.init();
 		var found = false;
 
-		if (false && _search_params.has(PAGE_TITLE)) { //enable after construction
+		if (_search_params.has(PAGE_TITLE)) {
 			var page_title = _search_params.get(PAGE_TITLE);
 			var page = pages.get(page_title);
 			

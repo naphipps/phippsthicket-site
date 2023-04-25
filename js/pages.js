@@ -17,17 +17,23 @@ var pages = new function(){
             filename: "html/home.html"
         },
         "About": {
-            filename: "html/about.html"
+            filename: "html/about.html",
+            is_article: true
+        },
+        "Article" : {
+            filename: "html/article.html"
         },
         "Search": {
             filename: "html/search.html"
         },
         "My Blog Post Title": {
             filename: "html/blog_post.html",
+            is_article: true,
             publish_date: "04-17-2023"
         },
         "Project Blue Star": {
             filename: "html/project_blue_star.html",
+            is_article: true,
             tags: [VIDEO_GAME_TAG, VULKAN_TAG, PROJECT_TAG, CPP_TAG], 
             files: ["js/project_blue_star.js"],
             publish_date: "04-18-2023",
@@ -60,6 +66,7 @@ var pages = new function(){
         if (typeof page.clear !== "function") page.clear = ()=>{};
         if (typeof page.description !== "string") page.description = "";
         if (!Array.isArray(page.old_titles)) page.old_titles = [];
+        if (typeof page.is_article !== "boolean") page.is_article = false;
 
         return page;
     }
