@@ -53,7 +53,7 @@ var index = new function(){
 						page.init();
 					}
 					else {
-						console.error("LOADING EMPTY PAGE: " + page.filename);
+						console.error("CANNOT LOAD EMPTY PAGE: " + page.filename);
 						loadHomePage();
 					}
 				}
