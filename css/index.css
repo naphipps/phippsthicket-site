@@ -48,19 +48,19 @@
 
 /* dark mode default */
 :root {
-    --fg-color: #dddddd;
+    --fg-color: #eeeeee;
     --fg2-color: #ffffff;
     --bg-color: #222222;
     --bg2-color: #333333;
-    --ac-color: #BDE4F4;
-    --ac2-color: #FFA86F;
+    --ac-color: #87cefa;
+    --ac-color: #87cefa;
 
-    --fg-color-a: #dddddd3F;
+    --fg-color-a: #eeeeee3F;
     --fg2-color-a: #ffffff3F;
     --bg-color-a: #2222223F;
     --bg2-color-a: #3333333F;
-    --ac-color-a: #BDE4F43F;
-    --ac2-color-a: #FFA86F3F;
+    --ac-color-a: #87cefa3F;
+    --ac-color-a: #87cefa3F;
 
     --shadow-color: rgba(0, 0, 0, 0.5);
     --font-sans: "Sans-Serif";
@@ -77,19 +77,21 @@
 /* light mode*/
 @media (prefers-color-scheme: light) {
     :root {
-        --bg-color: #dddddd;
+        --bg-color: #eeeeee;
         --bg2-color: #ffffff;
         --fg-color: #222222;
-        --fg2-color: #333333;
-        --ac2-color: #BDE4F4;
-        --ac-color: #FFA86F;
-
-        --bg-color-a: #dddddd3F;
+        --fg2-color: #444444;
+        --ac-color: #87cefa;
+        --ac-color: #87cefa;
+        
+        --bg-color-a: #eeeeee3F;
         --bg2-color-a: #ffffff3F;
         --fg-color-a: #2222223F;
-        --fg2-color-a: #3333333F;
-        --ac2-color-a: #BDE4F43F;
-        --ac-color-a: #FFA86F3F;
+        --fg2-color-a: #4444443F;
+        --ac-color-a: #87cefa3F;
+        --ac-color-a: #87cefa3F;
+
+        --shadow-color: rgba(0, 0, 0, 0.25);
     }
 }
 
@@ -126,7 +128,7 @@ body {
 a[type="button"],
 button {
     background: var(--ac-color);
-    box-shadow: 0 0 10px var(--shadow-color);
+    box-shadow: 0 0 3px var(--shadow-color);
     white-space: nowrap;
 }
 
@@ -134,7 +136,7 @@ a,
 a *,
 button, 
 button * {
-    font-family: var(--font-sans);
+    font-family: var(--font-sans-bold);
     user-select: none;
 }
 
@@ -164,11 +166,11 @@ a:not([type~="button"]) {
 
 a[type="button"],
 button {
-    color: var(--bg-color);
+    color: var(--bg2-color);
 }
 
 a:hover {
-    box-shadow: 0 0 10px var(--shadow-color);
+    box-shadow: 0 0 3px var(--shadow-color);
 }
 
 a:hover, 
@@ -209,7 +211,7 @@ button:active {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    box-shadow: 0 0 10px var(--shadow-color);
+    box-shadow: 0 0 3px var(--shadow-color);
     z-index: 9999;
 }
 
@@ -277,8 +279,7 @@ button:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    fill: var(--fg2-color);
-    fill: none;
+    fill: var(--fg-color-a);
     stroke: var(--fg-color);
     stroke-width: 5px;
     stroke-linejoin: round;
@@ -298,7 +299,7 @@ button:active {
     margin: auto;
     background: var(--bg2-color);
     max-width: 800px;
-    box-shadow: 0 0 10px var(--shadow-color);
+    box-shadow: 0 0 3px var(--shadow-color);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 10px 20px 20px;
@@ -309,7 +310,7 @@ button:active {
     background: var(--bg2-color);
     max-width: 800px;
     max-height: 800px;
-    box-shadow: 0 0 10px var(--shadow-color);
+    box-shadow: 0 0 3px var(--shadow-color);
     border-radius: 20px;
     padding: 20px;
 }
@@ -345,29 +346,32 @@ p.quote {
 .color_palette {
     background: linear-gradient(
         90deg,
-        var(--fg2-color) 16.67%,
-        var(--fg-color) 16.67% 33.34%,
-        var(--ac2-color) 33.34% 50%,
-        var(--ac-color) 50% 66.67%,
-        var(--bg2-color) 66.67% 83.34%,
-        var(--bg-color) 83.34%
+        var(--fg2-color) 20%,
+        var(--fg-color) 20% 40%,
+        var(--ac-color) 40% 60%,
+        var(--bg2-color) 60% 80%,
+        var(--bg-color) 80%
     );
     width: 100%;
     height: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 10px var(--shadow-color);
+    box-shadow: 0 0 3px var(--shadow-color);
 }
 
 @media (prefers-color-scheme: light) {
     .color_palette {
         background: linear-gradient(
             90deg,
-            var(--bg2-color) 16.67%,
-            var(--bg-color) 16.67% 33.34%,
-            var(--ac-color) 33.34% 50%,
-            var(--ac2-color) 50% 66.67%,
-            var(--fg2-color) 66.67% 83.34%,
-            var(--fg-color) 83.34%
+            var(--bg2-color) 20%,
+            var(--bg-color) 20% 40%,
+            var(--ac-color) 40% 60%,
+            var(--fg2-color) 60% 80%,
+            var(--fg-color) 80%
         );
     }
+
+    /* a[type="button"],
+    button {
+        color: var(--fg2-color);
+    } */
 }
