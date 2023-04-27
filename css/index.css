@@ -85,6 +85,7 @@
     font-style: normal;
     font-family: var(--font-serif);
     font-size: 16px;
+    box-sizing: content-box;
 }
 
 code {
@@ -97,56 +98,78 @@ body {
     border-radius: 0px;
 }
 
-button {
-    background: var(--ac-color);
-    box-shadow: 0 0 10px var(--shadow-color);
-    white-space: nowrap;
-}
-
-button, button * {
-    font-family: var(--font-sans);
-}
-
-button, a {
+.flex_container {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
-    padding: 5px 15px;
-    text-decoration: none;
 }
 
 .indent {
     text-indent: 20px;
 }
 
-button:hover, button:hover * {
+a[type="button"],
+button {
+    background: var(--ac-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+    white-space: nowrap;
+}
+
+a,
+a *,
+button, 
+button * {
+    font-family: var(--font-sans);
+}
+
+a,
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 5px 15px;
+    text-decoration: none;
+    min-height: 32px;
+    min-width: 32px;
+    margin: 5px;
+}
+
+a:hover, 
+a:hover *,
+button:hover, 
+button:hover * {
     cursor: pointer;
 }
 
-a {
+a:not([type~="button"]) {
     color: inherit;
+}
+
+a[type="button"],
+button {
+    color: var(--bg-color);
 }
 
 a:hover {
     box-shadow: 0 0 10px var(--shadow-color);
 }
 
-a:hover, a:hover * {
-    cursor: pointer;
+a:hover, 
+a:hover * {
     background: var(--ac-color);
     color: var(--bg2-color);
 }
 
-button:active, 
-a:active {
+a:active,
+button:active {
     outline: 3px solid var(--ac-color);
 }
 
-button:active, 
 a:active,
-button:active *, 
-a:active * {
+a:active *,
+button:active, 
+button:active * {
     background: inherit;
     color: var(--ac-color);
 }
@@ -195,16 +218,9 @@ a:active * {
 }
 
 .social_icon {
-    min-width: 24px;
-    min-height: 24px;
-}
-
-button .social_icon svg {
-    width: 16px;
-    height: 16px;
-}
-
-button .social_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 16px;
     min-height: 16px;
 }

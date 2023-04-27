@@ -22,11 +22,7 @@ var pages = new function(){
         },
         "About": {
             filename: "html/about.html",
-            files: ["js/about.js", "css/about.css"],
-            is_article: true,
-            init: ()=>{
-                about.init();
-            }
+            is_article: true
         },
         "Article" : {
             filename: "html/article.html"
