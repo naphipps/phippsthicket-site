@@ -197,6 +197,12 @@ button:active {
     background: var(--ac-color-a);
 }
 
+svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #header,
 #header * {
     font-family: var(--font-sans);
@@ -205,7 +211,7 @@ button:active {
 
 #header {
     background: var(--bg2-color);
-    padding: 20px;
+    padding: 30px 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -248,8 +254,20 @@ button:active {
     min-height: 16px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #title {
     white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}
+
+#title>*+* {
+    margin-left: 10px;
 }
 
 #title:active {
@@ -260,38 +278,13 @@ button:active {
     box-shadow: none;
 }
 
-#title>*+* {
-    margin-left: 10px;
-}
-
 #title:hover, #title:hover * {
     background: var(--bg2-color);
     color: var(--fg-color);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo svg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    fill: var(--fg-color-a);
-    stroke: var(--fg-color);
-    stroke-width: 10px;
-    stroke-linejoin: bevel;
-}
-
-#title .logo {
-    min-width: 64px;
-    min-height: 64px;
-}
-
 #title .logo svg {
-    width: 64px;
+    width: auto;
     height: 64px;
 }
 
