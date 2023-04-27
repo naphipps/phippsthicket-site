@@ -281,8 +281,8 @@ button:active {
     justify-content: center;
     fill: var(--fg-color-a);
     stroke: var(--fg-color);
-    stroke-width: 5px;
-    stroke-linejoin: round;
+    stroke-width: 10px;
+    stroke-linejoin: bevel;
 }
 
 #title .logo {
