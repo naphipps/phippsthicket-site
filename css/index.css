@@ -54,6 +54,14 @@
     --bg2-color: #333333;
     --ac-color: #BDE4F4;
     --ac2-color: #FFA86F;
+
+    --fg-color-a: #dddddd3F;
+    --fg2-color-a: #ffffff3F;
+    --bg-color-a: #2222223F;
+    --bg2-color-a: #3333333F;
+    --ac-color-a: #BDE4F43F;
+    --ac2-color-a: #FFA86F3F;
+
     --shadow-color: rgba(0, 0, 0, 0.5);
     --font-sans: "Sans-Serif";
     --font-sans-thin: "Sans-Serif Thin";
@@ -75,6 +83,13 @@
         --fg2-color: #333333;
         --ac2-color: #BDE4F4;
         --ac-color: #FFA86F;
+
+        --bg-color-a: #dddddd3F;
+        --bg2-color-a: #ffffff3F;
+        --fg-color-a: #2222223F;
+        --fg2-color-a: #3333333F;
+        --ac2-color-a: #BDE4F43F;
+        --ac-color-a: #FFA86F3F;
     }
 }
 
@@ -120,6 +135,7 @@ a *,
 button, 
 button * {
     font-family: var(--font-sans);
+    user-select: none;
 }
 
 a,
@@ -170,8 +186,13 @@ a:active,
 a:active *,
 button:active, 
 button:active * {
-    background: inherit;
+    background: none;
     color: var(--ac-color);
+}
+
+a:active,
+button:active {
+    background: var(--ac-color-a);
 }
 
 #header,
@@ -246,12 +267,34 @@ button:active * {
     color: var(--fg-color);
 }
 
-#logo svg {
-    width: 32px;
-    height: 32px;
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#article_page {
+.logo svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: var(--fg2-color);
+    fill: none;
+    stroke: var(--fg-color);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+}
+
+#title .logo {
+    min-width: 64px;
+    min-height: 64px;
+}
+
+#title .logo svg {
+    width: 64px;
+    height: 64px;
+}
+
+.article_page {
     margin: auto;
     background: var(--bg2-color);
     max-width: 800px;
@@ -271,25 +314,31 @@ button:active * {
     padding: 20px;
 }
 
-#article_header {
+.article_page p,
+.article_card p {
+    text-align: justify;
+}
+
+.article_header {
     font-family: var(--font-sans-thin);
     font-size: 32px;
     padding: 10px;
     border-bottom: solid 1px var(--fg-color);
 }
 
-#article_content {
+.article_content {
     margin: 20px 0;
 }
 
-#article_content>p+p {
+.article_content>p+p {
     margin-top: 20px;
 }
 
-.quote {
+.quote,
+p.quote {
     font-style: italic;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 40px;
     margin: auto;
 }
 

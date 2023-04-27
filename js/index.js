@@ -122,18 +122,7 @@ var index = new function(){
 		util.load("js/pages.js", digestPages);
 	}
 
-	function loadLogo(){
-		util.load("asset/exclamation_square.svg", function(logos){
-			if (logos) {
-				var logo = logos["asset/exclamation_square.svg"];
-				var element = util.byId("logo");
-				if (logo && element) element.innerHTML = logo;
-			}
-		});
-	}
-
 	function init(){
-		loadLogo();
 		loadIcons();
 		loadPages();
 	}
