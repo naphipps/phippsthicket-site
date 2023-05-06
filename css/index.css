@@ -206,12 +206,12 @@ svg {
 #header,
 #header * {
     font-family: var(--font-sans);
-    font-size: 48px;
+    font-size: 32px;
 }
 
 #header {
     background: var(--bg2-color);
-    padding: 30px 40px;
+    padding: 10px 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -288,7 +288,7 @@ svg {
 
 #title .logo svg {
     width: auto;
-    height: 64px;
+    height: 32px;
 }
 
 @media (prefers-color-scheme: light) {
