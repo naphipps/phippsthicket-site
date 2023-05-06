@@ -50,15 +50,15 @@
 :root {
     --fg-color: #eeeeee;
     --fg2-color: #ffffff;
-    --bg-color: #222222;
-    --bg2-color: #333333;
+    --bg-color: #222225;
+    --bg2-color: #333338;
     --ac-color: #87cefa;
     --ac-color: #87cefa;
 
     --fg-color-a: #eeeeee3F;
     --fg2-color-a: #ffffff3F;
-    --bg-color-a: #2222223F;
-    --bg2-color-a: #3333333F;
+    --bg-color-a: #2222253F;
+    --bg2-color-a: #3333383F;
     --ac-color-a: #87cefa3F;
     --ac-color-a: #87cefa3F;
 
@@ -80,14 +80,14 @@
         --bg-color: #eeeeee;
         --bg2-color: #ffffff;
         --fg-color: #222222;
-        --fg2-color: #444444;
+        --fg2-color: #333338;
         --ac-color: #87cefa;
         --ac-color: #87cefa;
         
         --bg-color-a: #eeeeee3F;
         --bg2-color-a: #ffffff3F;
         --fg-color-a: #2222223F;
-        --fg2-color-a: #4444443F;
+        --fg2-color-a: #3333383F;
         --ac-color-a: #87cefa3F;
         --ac-color-a: #87cefa3F;
 
@@ -274,13 +274,16 @@ svg {
     outline: none;
 }
 
-#title:hover {
-    box-shadow: none;
+#title:active,
+#title:active *,
+#title:hover, 
+#title:hover * {
+    color: inherit;
+    background: inherit;
 }
 
-#title:hover, #title:hover * {
-    background: var(--bg2-color);
-    color: var(--fg-color);
+#title:hover {
+    box-shadow: none;
 }
 
 #title .logo svg {
@@ -288,13 +291,19 @@ svg {
     height: 64px;
 }
 
+@media (prefers-color-scheme: light) {
+    #title .logo svg {
+        color: white;
+        background: inherit;
+        stroke: var(--fg-color);
+        stroke-width: 10px;
+        stroke-linejoin: round;
+    }
+}
+
 .article_page {
     margin: auto;
-    background: var(--bg2-color);
     max-width: 800px;
-    box-shadow: 0 0 3px var(--shadow-color);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     padding: 10px 20px 20px;
 }
 
