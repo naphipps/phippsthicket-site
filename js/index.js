@@ -127,8 +127,6 @@ var index = new function(){
 		loadPages();
 	}
 
-	init();
-
 	return {
 		init: init,
 		openPage: openPage,
