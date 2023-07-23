@@ -81,23 +81,21 @@ var util = new function(){
             return;
 
         function onload(event) {
-            if (event && event.target) {
+            if (event.target) {
                 event.target.removeEventListener("load", onload);
                 event.target.removeEventListener("error", onerror);
             }
 
-            if (callback) callback();
+            if (callback) callback(src);
         }
 
         function onerror(event){
-            if (event) {
-                if (event.target) {
-                    event.target.removeEventListener("load", onload);
-                    event.target.removeEventListener("error", onerror);
-                }
-
-                if (event.type && event.message) console.error(event.type + ": " + event.message);
+            if (event.target) {
+                event.target.removeEventListener("load", onload);
+                event.target.removeEventListener("error", onerror);
             }
+
+            if (event.type && event.message) console.error(event.type + ": " + event.message);
         }
         
         var element = null;
@@ -189,7 +187,7 @@ var util = new function(){
         unloadSrc(files.filter(isFilenameSrc));
 
         var others = files.filter(isFilenameOther);
-        if (others.length > 0) console.error("CANNOT UNLOAD: " + others.join(","));
+        if (others.length > 0) console.error("UNLOAD FAILED: " + others.join(","));
         
         if (callback) callback();
     }
