@@ -4,24 +4,23 @@
 //
 //##===----------------------------------------------------------------------===##//
 
-new function(){
-    if (typeof String.prototype.endsWith !== "function") {
-        String.prototype.endsWith = function(suffix) {
-            return this.indexOf(suffix, this.length - suffix.length) === this.length - suffix.length;
-        };
-    }
+if (typeof String.prototype.endsWith !== "function")
+    String.prototype.endsWith = (suffix) => {
+        return this.indexOf(suffix, this.length - suffix.length) === this.length - suffix.length;
+    };
 
-    if (typeof String.prototype.startsWith !== "function") {
-        String.prototype.startsWith = function(prefix) {
-            return this.indexOf(prefix) === 0;
-        };
-    }
+if (typeof String.prototype.startsWith !== "function")
+    String.prototype.startsWith = (prefix) => {
+        return this.indexOf(prefix) === 0;
+    };
 
-    //TODO: ensure string.contains, array.contains
-};
+if (typeof Object.prototype.isEmpty !== "function")
+    Object.prototype.isEmpty = () => {
+        for (var _ in this) return false;
+        return true;
+    };
 
 var util = new function(){
-
     function sanitizeCallback(callback){
         return typeof callback === "function" ? callback : null;
     }
@@ -57,6 +56,10 @@ var util = new function(){
         return filename.endsWith(".css");
     }
 
+    function isFilenameSrc(filename){
+        return isFilenameJs(filename) || isFilenameCss(filename);
+    }
+
     function isFilenameOther(filename){
         return !(isFilenameJs(filename) || isFilenameCss(filename));
     }
@@ -69,21 +72,59 @@ var util = new function(){
         return getScripts(src).length > 0;
     }
 
-    function injectScript(src, callback){
-        if (hasScript(src)) return;
+    function injectSrc(src, callback){
+        var is_script = isFilenameJs(src);
+        var is_stylesheet = isFilenameCss(src);
 
-        callback = sanitizeCallback(callback);
-        var script = create("script");
-        script.setAttribute("src", src);
-        script.setAttribute("async", true);
-        script.addEventListener("load", callback);
-        document.head.appendChild(script);
+        if ((is_script && hasScript(src)) || 
+            (is_stylesheet && hasStylesheet(src))) 
+            return;
+
+        function onload(event) {
+            if (event && event.target) {
+                event.target.removeEventListener("load", onload);
+                event.target.removeEventListener("error", onerror);
+            }
+
+            if (callback) callback();
+        }
+
+        function onerror(event){
+            if (event) {
+                if (event.target) {
+                    event.target.removeEventListener("load", onload);
+                    event.target.removeEventListener("error", onerror);
+                }
+
+                if (event.type && event.message) console.error(event.type + ": " + event.message);
+            }
+        }
+        
+        var element = null;
+        if (is_script) {
+            element = create("script");
+            element.setAttribute("src", src);
+            element.setAttribute("async", true);
+        }
+        else if (is_stylesheet) {
+            element = create("link");
+            element.setAttribute("rel", "stylesheet");
+            element.setAttribute("href", src);
+        }
+
+        element.addEventListener("load", onload);
+        element.addEventListener("onerror", onerror);
+
+        if (element) document.head.appendChild(element);
     }
 
-    function removeScript(src){
-        var scripts = getScripts(src);
-        for (var i = 0; i < scripts.length; i++)
-            scripts[i].remove();
+    function removeSrc(src) {
+        var elements = [];
+        if (isFilenameJs(src)) elements = getScripts(src);
+        else if (isFilenameCss(src)) elements = getStylesheets(src);
+
+        for (var i = 0; i < elements.length; i++)
+            elements[i].remove();
     }
 
     function getStylesheets(src){
@@ -94,153 +135,62 @@ var util = new function(){
         return getStylesheets(src).length > 0;
     }
 
-    function injectStylesheet(src, callback){
-        if (hasStylesheet(src)) return;
-        
-        callback = sanitizeCallback(callback);
-        var link = create("link");
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", src);
-        link.addEventListener("load", callback);
-        document.head.appendChild(link);
+    function loadSrc(files, callback) {
+        for (var i = 0; i < files.length; i++) 
+            injectSrc(sanitizeFilename(files[i]), callback);
     }
 
-    function removeStylesheet(src){
-        var stylesheets = getStylesheets(src);
-        for (var i = 0; i < stylesheets.length; i++)
-            stylesheets[i].remove();
+    function unloadSrc(files) {
+        for (var i = 0; i < files.length; i++)
+            removeSrc(sanitizeFilename(files[i]));
     }
 
-    function loadJs(filename, callback){
-        if (Array.isArray(filename)){
-            for (var i = 0; i < filename.length; i++) 
-                injectScript(sanitizeFilename(filename[i]), callback);
-        }
-        else {
-            injectScript(sanitizeFilename(filename), callback);
-        }
-    }
-
-    function loadCss(filename, callback){
-        if (Array.isArray(filename)) {
-            for (var i = 0; i < filename.length; i++) 
-                injectStylesheet(sanitizeFilename(filename[i]), callback);
-        }
-        else {
-            injectStylesheet(sanitizeFilename(filename), callback);
-        }
-    }
-
-    function unloadJs(filename){
-        if (Array.isArray(filename)){
-            for (var i = 0; i < filename.length; i++)
-                removeScript(sanitizeFilename(filename[i]));
-        }
-        else {
-            removeScript(sanitizeFilename(filename));
-        }
-    }
-
-    function unloadCss(filename){
-        if (Array.isArray(filename)){
-            for (var i = 0; i < filename.length; i++)
-                removeStylesheet(sanitizeFilename(filename[i]));
-        }
-        else {
-            removeStylesheet(sanitizeFilename(filename));
-        }
-    }
-
-    async function loadFile(filename, callback){
-        var files = {};
+    async function fetchFile(filename, callback){
         try {
-            if (Array.isArray(filename)){
-                var filenames = filename;
-
-                for (var i = 0; i < filenames.length; i++) {
-                    filename = sanitizeFilename(filenames[i]);
-                    var response = await fetch(filename);
-                    if (!response.ok) throw new Error();
-                    files[filename] = await response.text();
-                }
-            }
-            else {
-                filename = sanitizeFilename(filename);
-                var response = await fetch(filename);
-                if (!response.ok) throw new Error();
-                files[filename] = await response.text();
-            }
+            var response = await fetch(filename);
+            if (!response.ok) throw new Error();
+            response.text().then((text) => {
+                if (callback) callback(filename, text);
+            });
         }
         catch (exception){
-            console.error("LOAD FAILED: " + filename + ", " + exception);
-            files = null;
-        }
-
-        callback = sanitizeCallback(callback);
-        if (callback) callback(files);
-    }
-    
-    function load(filename, callback){
-
-        callback = sanitizeCallback(callback);
-
-        var counter = 1;
-        function removeSelfCallback(callback){
-            function removeSelf(event){
-                if (event && event.target) {
-                    event.target.removeEventListener("load", removeSelf);
-                }
-                if (--counter === 0 && callback) callback();
-            }
-            return removeSelf;
-        }
-
-        if (Array.isArray(filename)) {
-            var jsFiles = filename.filter(isFilenameJs);
-            var cssFiles = filename.filter(isFilenameCss);
-            var others = filename.filter(isFilenameOther);
-            counter = jsFiles.length + cssFiles.length;
-            var onloadCallback = removeSelfCallback(()=>{loadFile(others, callback);});
-
-            if (counter > 0) {
-                loadJs(jsFiles, onloadCallback);
-                loadCss(cssFiles, onloadCallback);
-            }
-            else {
-                loadFile(others, callback);
-            }
-        }
-        else if (isFilenameJs(filename)) {
-            loadJs(filename, removeSelfCallback(callback));
-        }
-        else if (isFilenameCss(filename)) {
-            loadCss(filename, removeSelfCallback(callback));
-        }
-        else {
-            loadFile(filename, callback);
+            console.error("LOAD FAILED: " + files.join(",") + ", " + exception);
         }
     }
+
+    function loadFile(files, callback){
+        for (var i = 0; i < files.length; i++)
+            fetchFile(sanitizeFilename(files[i]), callback);
+    }
     
-    function unload(filename, callback){
-        if (Array.isArray(filename)){
-            unloadJs(filename.filter(isFilenameJs));
-            unloadCss(filename.filter(isFilenameCss));
-
-            var others = filename.filter(isFilenameOther);
-            for (var i = 0; i < others.length; i++)
-                console.error("LOAD FAILED: " + others[i]);
-        }
-        else if (isFilenameJs(filename)) {
-            unloadJs(filename);
-        }
-        else if (isFilenameCss(filename)) {
-            unloadCss(filename);
-        }
-        else {
-            console.error("UNLOAD FAILED: " + filename);
-        }
-
+    function load(files, callback){
+        if (!Array.isArray(files)) files = [files];
         callback = sanitizeCallback(callback);
+
+        var src_files = files.filter(isFilenameSrc);
+        var others = files.filter(isFilenameOther);
+        var load_counter = src_files.length + others.length;
+        var loaded = {};
+
+        function resolveLoad(file, content) {
+            if (file && content) loaded[file] = content;
+            if (--load_counter === 0 && callback)
+                callback(loaded.isEmpty() ? null : loaded);
+        }
+
+        loadSrc(src_files, resolveLoad);
+        loadFile(others, resolveLoad);
+    }
+    
+    function unload(files, callback){
+        if (!Array.isArray(files)) files = [files];
+        callback = sanitizeCallback(callback);
+
+        unloadSrc(files.filter(isFilenameSrc));
+
+        var others = files.filter(isFilenameOther);
+        if (others.length > 0) console.error("CANNOT UNLOAD: " + others.join(","));
+        
         if (callback) callback();
     }
 
@@ -263,6 +213,7 @@ var util = new function(){
         load: load,
         unload: unload,
         dispatchOn: dispatchOn,
+        sanitizeCallback: sanitizeCallback,
         sanitizeFilename: sanitizeFilename
     };
 };
