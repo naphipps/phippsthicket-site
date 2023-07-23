@@ -144,6 +144,7 @@ var util = new function(){
     }
 
     async function fetchFile(filename, callback){
+        //TODO: I think we can cache these files in our session storage or something?
         try {
             var response = await fetch(filename);
             if (!response.ok) throw new Error();
