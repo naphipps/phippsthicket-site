@@ -6,7 +6,7 @@
 
 var index = new function(){
 
-	const PAGE_TITLE = "page_title";
+	const PAGE_TITLE = "p";
 	var _search_params = new URLSearchParams(window.location.search);
 
 	const _social_icons = [
