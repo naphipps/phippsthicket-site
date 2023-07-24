@@ -10,12 +10,22 @@ var index = new function(){
 	var _search_params = new URLSearchParams(window.location.search);
 
 	const _social_icons = [
-		{filename: "asset/github_icon.svg", class: "github_link"},
-		{filename: "asset/twitter_icon.svg", class: "twitter_link"},
-		{filename: "asset/instagram_icon.svg", class: "instagram_link"},
-		{filename: "asset/discord_icon.svg", class: "discord_link"},
-		{filename: "asset/trello_icon.svg", class: "trello_link"},
-		{filename: "asset/google_icon.svg", class: "google_link"}
+		{filename: "asset/github_icon.svg", class: "github_icon"},
+		{filename: "asset/twitter_icon.svg", class: "twitter_icon"},
+		{filename: "asset/instagram_icon.svg", class: "instagram_icon"},
+		{filename: "asset/discord_icon.svg", class: "discord_icon"},
+		{filename: "asset/trello_icon.svg", class: "trello_icon"},
+		{filename: "asset/google_icon.svg", class: "google_icon"}
+	];
+
+	const _links = [
+		{class: "github_link", href: "https://github.com/naphipps"},
+		{class: "twitter_link", href: "https://twitter.com/PhippsThicket"},
+		{class: "discord_link", href: "https://discord.gg/5PMGCZuj9D"},
+		{class: "instagram_link", href: "https://www.instagram.com/phippsthicket/"},
+		{class: "trello_link", href: "https://trello.com/b/YJhL1R6V", title: "Current Project"},
+		{class: "google_domains_link", href: "https://domains.google"},
+		{class: "github_hosting_link", href: "https://github.com/naphipps/phippsthicket-site"}
 	];
 
 	function goHome(){
@@ -37,6 +47,7 @@ var index = new function(){
 				util.byId("article_content").innerHTML = files[page.filename];
 				page.init();
 				loadIcons();
+				setLinks();
 			}
 		});
 	}
@@ -54,6 +65,7 @@ var index = new function(){
 						util.byId("content").innerHTML = file;
 						page.init();
 						loadIcons();
+						setLinks();
 					}
 					else {
 						console.error("CANNOT LOAD EMPTY PAGE: " + page.filename);
@@ -118,12 +130,27 @@ var index = new function(){
 		util.load(icons, digestIcons);
 	}
 
+	function setLinks(){
+		var link = null;
+
+		for (var i=0; i<_links.length; i++){
+			link = _links[i];
+			
+			var elements = util.selectAll("." + link.class);
+			for (var j=0; j<elements.length; j++)
+				for (var attribute in link)
+					if (attribute !== "class")
+						elements[j].setAttribute(attribute, link[attribute]);
+		}
+	}
+
 	function loadPages(){
 		util.load("js/pages.js", digestPages);
 	}
 
 	function init(){
 		loadIcons();
+		setLinks();
 		loadPages();
 	}
 
