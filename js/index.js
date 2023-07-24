@@ -96,7 +96,7 @@ var index = new function(){
 		if (icons) {
 			var social = null;
 			var icon = null;
-			var element = null;
+			
 			for (var i=0; i<_social_icons.length; i++){
 				social = _social_icons[i];
 				icon = icons[social.filename];
