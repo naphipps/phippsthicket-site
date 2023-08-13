@@ -15,7 +15,7 @@ var index = new function(){
 		{filename: "asset/instagram_icon.svg", class: "instagram_icon"},
 		{filename: "asset/discord_icon.svg", class: "discord_icon"},
 		{filename: "asset/trello_icon.svg", class: "trello_icon"},
-		{filename: "asset/google_icon.svg", class: "google_icon"}
+		{filename: "asset/cloudflare_icon.svg", class: "domain_icon"}
 	];
 
 	const _links = [
@@ -24,8 +24,8 @@ var index = new function(){
 		{class: "discord_link", href: "https://discord.gg/5PMGCZuj9D"},
 		{class: "instagram_link", href: "https://www.instagram.com/phippsthicket/"},
 		{class: "trello_link", href: "https://trello.com/b/YJhL1R6V", title: "Current Project"},
-		{class: "google_domains_link", href: "https://domains.google"},
-		{class: "github_hosting_link", href: "https://github.com/naphipps/phippsthicket-site"}
+		{class: "domain_provider_link", href: "https://www.cloudflare.com/products/registrar/", title: "Domain by Cloudflare"},
+		{class: "host_provider_link", href: "https://github.com/naphipps/phippsthicket-site", title: "Hosting by GitHub"}
 	];
 
 	function goHome(){
