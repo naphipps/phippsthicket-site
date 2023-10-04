@@ -112,13 +112,16 @@ code {
 body {
     background: var(--bg-color);
     color: var(--fg-color);
-    border-radius: 0px;
 }
 
 .flex_container {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.rounded {
+    border-radius: 4px;
 }
 
 .indent {
@@ -145,7 +148,6 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
     padding: 5px 15px;
     text-decoration: none;
     min-height: 32px;
@@ -313,7 +315,6 @@ svg {
     max-width: 800px;
     max-height: 800px;
     box-shadow: 0 0 3px var(--shadow-color);
-    border-radius: 20px;
     padding: 20px;
 }
 
