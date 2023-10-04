@@ -76,9 +76,10 @@ var util = new function(){
         var is_script = isFilenameJs(src);
         var is_stylesheet = isFilenameCss(src);
 
-        if ((is_script && hasScript(src)) || 
-            (is_stylesheet && hasStylesheet(src))) 
+        if ((is_script && hasScript(src)) || (is_stylesheet && hasStylesheet(src))) {
+            if (callback) callback(src);
             return;
+        }
 
         function onload(event) {
             if (event.target) {
