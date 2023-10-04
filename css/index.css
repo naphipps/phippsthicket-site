@@ -120,6 +120,10 @@ body {
     justify-content: center;
 }
 
+.flex_container > * {
+    flex-shrink: 0;
+}
+
 .rounded {
     border-radius: 4px;
 }
