@@ -46,21 +46,18 @@
     src: url("../asset/SourceCodePro-Bold.ttf") format(truetype);
 }
 
-/* dark mode default */
 :root {
     --fg-color: #eeeeee;
     --fg2-color: #ffffff;
     --bg-color: #222225;
     --bg2-color: #333338;
-    --ac-color: #87cefa;
-    --ac-color: #87cefa;
+    --ac-color: #40c0ff;
 
     --fg-color-a: #eeeeee3F;
     --fg2-color-a: #ffffff3F;
     --bg-color-a: #2222253F;
     --bg2-color-a: #3333383F;
-    --ac-color-a: #87cefa3F;
-    --ac-color-a: #87cefa3F;
+    --ac-color-a: #40c0ff3F;
 
     --shadow-color: rgba(0, 0, 0, 0.5);
     --font-sans: "Sans-Serif";
@@ -72,27 +69,6 @@
     --font-code: "Code";
     --font-code-thin: "Code Thin";
     --font-code-bold: "Code Bold";
-}
-
-/* light mode*/
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg-color: #eeeeee;
-        --bg2-color: #ffffff;
-        --fg-color: #222222;
-        --fg2-color: #333338;
-        --ac-color: #87cefa;
-        --ac-color: #87cefa;
-        
-        --bg-color-a: #eeeeee3F;
-        --bg2-color-a: #ffffff3F;
-        --fg-color-a: #2222223F;
-        --fg2-color-a: #3333383F;
-        --ac-color-a: #87cefa3F;
-        --ac-color-a: #87cefa3F;
-
-        --shadow-color: rgba(0, 0, 0, 0.25);
-    }
 }
 
 * {
@@ -297,16 +273,6 @@ svg {
     height: 32px;
 }
 
-@media (prefers-color-scheme: light) {
-    #title .logo svg {
-        color: white;
-        background: inherit;
-        stroke: var(--fg-color);
-        stroke-width: 10px;
-        stroke-linejoin: round;
-    }
-}
-
 .article_page {
     margin: auto;
     max-width: 800px;
@@ -363,22 +329,4 @@ p.quote {
     height: 40px;
     border-radius: 20px;
     box-shadow: 0 0 3px var(--shadow-color);
-}
-
-@media (prefers-color-scheme: light) {
-    .color_palette {
-        background: linear-gradient(
-            90deg,
-            var(--bg2-color) 20%,
-            var(--bg-color) 20% 40%,
-            var(--ac-color) 40% 60%,
-            var(--fg2-color) 60% 80%,
-            var(--fg-color) 80%
-        );
-    }
-
-    /* a[type="button"],
-    button {
-        color: var(--fg2-color);
-    } */
 }
